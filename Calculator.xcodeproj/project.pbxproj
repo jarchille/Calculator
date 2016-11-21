@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		763BDFA81DE29F0200E52F4A /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 763BDFA71DE29F0200E52F4A /* CalculatorBrain.m */; };
 		764989641DDF76D000AAC1FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 764989631DDF76D000AAC1FE /* main.m */; };
 		764989671DDF76D000AAC1FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 764989661DDF76D000AAC1FE /* AppDelegate.m */; };
 		7649896A1DDF76D000AAC1FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764989691DDF76D000AAC1FE /* ViewController.m */; };
@@ -17,8 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		763BDFA61DE29F0200E52F4A /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
-		763BDFA71DE29F0200E52F4A /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
 		7649895F1DDF76D000AAC1FE /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764989631DDF76D000AAC1FE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		764989651DDF76D000AAC1FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,8 +60,6 @@
 			children = (
 				764989651DDF76D000AAC1FE /* AppDelegate.h */,
 				764989661DDF76D000AAC1FE /* AppDelegate.m */,
-				763BDFA61DE29F0200E52F4A /* CalculatorBrain.h */,
-				763BDFA71DE29F0200E52F4A /* CalculatorBrain.m */,
 				764989691DDF76D000AAC1FE /* ViewController.m */,
 				764989681DDF76D000AAC1FE /* ViewController.h */,
 				7649896B1DDF76D000AAC1FE /* Main.storyboard */,
@@ -157,7 +152,6 @@
 			files = (
 				7649896A1DDF76D000AAC1FE /* ViewController.m in Sources */,
 				764989671DDF76D000AAC1FE /* AppDelegate.m in Sources */,
-				763BDFA81DE29F0200E52F4A /* CalculatorBrain.m in Sources */,
 				764989641DDF76D000AAC1FE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

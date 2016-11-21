@@ -10,15 +10,34 @@
 
 @interface ViewController ()
 
+
+@property (nonatomic) BOOL toBeMultiplied;
+@property (nonatomic) BOOL toBeAdded;
+@property (nonatomic) BOOL toBeSubtracted;
+@property (nonatomic) BOOL toBeDivided;
+@property (nonatomic) BOOL isDecimal;
+
+
 @end
 
 @implementation ViewController
+
+double displayValue;
+double multiplyOperand;
+double addOperand;
+double subtractOperand;
+double divideOperand;
+int callCount;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.displayLabel.text = @"0";
-    isMultiOperation = NO;
+    self.toBeDivided = NO;
+    self.toBeAdded = NO;
+    self.toBeSubtracted = NO;
+    self.toBeDivided = NO;
+    
     
 }
 
@@ -30,8 +49,8 @@
 
 - (void)computeComputation:(int)digitPressed
 {
-    if (![self.displayLabel.text containsString:@"."]){
-        displayValue = ([self.displayLabel.text floatValue]* 10) + digitPressed;
+    if (self.isDecimal == NO){
+        displayValue = ([self.displayLabel.text doubleValue]* 10) + digitPressed;
         self.displayLabel.text = [NSString stringWithFormat:@"%.f",displayValue];
     }else {
         self.displayLabel.text = [self.displayLabel.text stringByAppendingString:[NSString stringWithFormat:@"%d", digitPressed]];
@@ -43,195 +62,133 @@
 {
     if(self.toBeMultiplied == YES)
     {
-        displayValue = [self.displayLabel.text floatValue];
+        displayValue = [self.displayLabel.text doubleValue];
         double result = displayValue * multiplyOperand;
         self.displayLabel.text = [NSString stringWithFormat:@"%g", result];
         self.toBeMultiplied = NO;
-        isMultiOperation = YES;
     } else if (self.toBeAdded == YES)
     {
-        displayValue = [self.displayLabel.text floatValue];
+        displayValue = [self.displayLabel.text doubleValue];
         double result = displayValue + addOperand;
         self.displayLabel.text = [NSString stringWithFormat:@"%g", result];
         self.toBeAdded = NO;
-        isMultiOperation = YES;
-    } else if (self.toBeSubtracted == YES){
-        displayValue = [self.displayLabel.text floatValue];
+    } else if (self.toBeSubtracted == YES)
+    {
+        displayValue = [self.displayLabel.text doubleValue];
         double result = subtractOperand - displayValue;
         self.displayLabel.text  = [NSString stringWithFormat:@"%g", result];
         self.toBeSubtracted = NO;
-        isMultiOperation = YES;
-    } else if (self.toBeDivided == YES){
-        displayValue = [self.displayLabel.text floatValue];
-        float result = divideOperand / displayValue;
+    } else {
+        displayValue = [self.displayLabel.text doubleValue];
+        double result = divideOperand / displayValue;
         self.displayLabel.text = [NSString stringWithFormat:@"%g", result];
         self.toBeDivided = NO;
-        isMultiOperation = YES;
-    }  else {
-        
     }
+    
 }
 - (IBAction)zero:(UIButton *)sender
 {
-    [self computeComputation:0];
+  [self computeComputation:0];
 }
-
 - (IBAction)one:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        [self computeComputation:1];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 1];
-    }
-
+  [self computeComputation:1];
 }
 - (IBAction)two:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        [self computeComputation:2];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 2];
-    }
+  [self computeComputation:2];
 }
 - (IBAction)three:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-       [self computeComputation:3];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 3];
-    }
+  [self computeComputation:3];
 }
 - (IBAction)four:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        [self computeComputation:4];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 4];
-    }
+  [self computeComputation:4];
 }
 - (IBAction)five:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        [self computeComputation:5];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 5];
-    }
-
+  [self computeComputation:5];
 }
 - (IBAction)six:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        [self computeComputation:6];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 6];
-    }
+  [self computeComputation:6];
 }
 - (IBAction)seven:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        [self computeComputation:7];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 7];
-    }
+  [self computeComputation:7];
 }
 - (IBAction)eight:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        [self computeComputation:8];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 8];
-    }
+  [self computeComputation:8];
 }
 - (IBAction)nine:(UIButton *)sender
 {
-     if (isMultiOperation == NO){
-        [self computeComputation:9];
-    }else{
-        displayValue = [self.displayLabel.text floatValue];
-        self.displayLabel.text = [NSString stringWithFormat:@"%d", 9];
-    }
+  [self computeComputation:9];
 }
+
+
 - (IBAction)add:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        addOperand = [self.displayLabel.text floatValue];
+    if (callCount < 1){
+        addOperand = [self.displayLabel.text doubleValue];
         self.displayLabel.text = @"";
-        isMultiOperation = YES;
         self.toBeAdded = YES;
-        [self solve];
+        callCount++;
     }else {
-        
-        self.toBeAdded = YES;
         [self solve];
-        addOperand = [self.displayLabel.text floatValue];
-        
+        callCount = 0;
         
     }
 }
 - (IBAction)subtract:(UIButton *)sender
 {
-    if (isMultiOperation == NO) {
-        subtractOperand = [self.displayLabel.text floatValue];
+    if (callCount < 1){
+        subtractOperand = [self.displayLabel.text doubleValue];
         self.displayLabel.text = @"";
-        isMultiOperation = YES;
         self.toBeSubtracted = YES;
+        callCount++;
+    } else {
         [self solve];
-    }else {
-        
-        self.toBeSubtracted = YES;
-        [self solve];
-        subtractOperand = [self.displayLabel.text floatValue];
-        
+        callCount = 0;
     }
-
-
 }
+
+
 - (IBAction)multiply:(UIButton *)sender
 {
-    if (isMultiOperation == NO){
-        multiplyOperand = [self.displayLabel.text floatValue];
+    if (callCount < 1){
+        multiplyOperand = [self.displayLabel.text doubleValue];
         self.displayLabel.text = @"";
-        isMultiOperation = YES;
         self.toBeMultiplied = YES;
-        [self solve];
+        callCount++;
     } else {
-        self.toBeMultiplied = YES;
         [self solve];
-        multiplyOperand = [self.displayLabel.text floatValue];
-        
-        
+        multiplyOperand = [self.displayLabel.text doubleValue];
+        callCount = 0;
     }
 
+       
 }
 - (IBAction)divide:(UIButton *)sender
 {
-    
-    if (isMultiOperation == NO){
-        divideOperand = [self.displayLabel.text floatValue];
+    if (callCount < 1) {
+        divideOperand = [self.displayLabel.text doubleValue];
         self.displayLabel.text = @"";
         self.toBeDivided = YES;
+        callCount++;
+    }else {
         [self solve];
-
-    } else {
-        self.toBeDivided = YES;
-        [self solve];
-        divideOperand = [self.displayLabel.text floatValue];
-        
-        
+        divideOperand = [self.displayLabel.text doubleValue];
+        callCount = 0;
     }
-    
+
 }
 - (IBAction)equals:(UIButton *)sender
 {
-    [self solve];
+    if (callCount == 0){
+      self.displayLabel.text = @"";
+    }else [self solve];
 }
 - (IBAction)clear:(UIButton *)sender
 {
@@ -239,19 +196,21 @@
     self.toBeSubtracted = NO;
     self.toBeAdded = NO;
     self.toBeMultiplied = NO;
-    isMultiOperation = NO;
+    self.toBeDivided = NO;
+    self.isDecimal = NO;
+
+    callCount = 0;
 
 }
 - (IBAction)decimalpoint:(UIButton *)sender
 {
-    if ([self.displayLabel.text containsString:@"."]){
-        return;
-    } else {
+    if (![self.displayLabel.text containsString:@"."])
+    {
         self.displayLabel.text = [self.displayLabel.text stringByAppendingString:@"."];
-        
-
+        self.isDecimal = YES;
     }
-    
 }
+    
+
 
 @end

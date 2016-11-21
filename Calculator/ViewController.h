@@ -38,19 +38,9 @@
 - (IBAction)clear:(UIButton *)sender;
 - (IBAction)decimalpoint:(UIButton *)sender;
 
-@property (nonatomic) BOOL toBeMultiplied;
-@property (nonatomic) BOOL toBeAdded;
-@property (nonatomic) BOOL toBeSubtracted;
-@property (nonatomic) BOOL toBeDivided;
 
 @end
 
-double displayValue;
-double multiplyOperand;
-double addOperand;
-double subtractOperand;
-double divideOperand;
-bool isMultiOperation;
 
 
 
